@@ -1,0 +1,18 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=00874DDAD92C3F4CB42F9961E9E91897/Description/@EntryValue">Substitute for logger</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=BC32E497FE2EAC47A6A3CAEE1324A2D5/@KeyIndexDefined">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=BC32E497FE2EAC47A6A3CAEE1324A2D5/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=BC32E497FE2EAC47A6A3CAEE1324A2D5/Applicability/=Surround/@EntryIndexedValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=BC32E497FE2EAC47A6A3CAEE1324A2D5/Description/@EntryValue">Cria um span do OpenTracing</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=BC32E497FE2EAC47A6A3CAEE1324A2D5/Field/=DESCRICAO/@KeyIndexDefined">True</s:Boolean>
+	<s:Int64 x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=BC32E497FE2EAC47A6A3CAEE1324A2D5/Field/=DESCRICAO/Order/@EntryValue">0</s:Int64>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=BC32E497FE2EAC47A6A3CAEE1324A2D5/Reformat/@EntryValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=BC32E497FE2EAC47A6A3CAEE1324A2D5/Scope/=C3001E7C0DA78E4487072B7E050D86C5/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=BC32E497FE2EAC47A6A3CAEE1324A2D5/Scope/=C3001E7C0DA78E4487072B7E050D86C5/CustomProperties/=minimumLanguageVersion/@EntryIndexedValue">2.0</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=BC32E497FE2EAC47A6A3CAEE1324A2D5/Scope/=C3001E7C0DA78E4487072B7E050D86C5/Type/@EntryValue">InCSharpFile</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=BC32E497FE2EAC47A6A3CAEE1324A2D5/Shortcut/@EntryValue">tspan</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=BC32E497FE2EAC47A6A3CAEE1324A2D5/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=BC32E497FE2EAC47A6A3CAEE1324A2D5/Text/@EntryValue">using (_tracer.BuildSpan("$DESCRICAO$").StartActive())
+{
+    $SELECTION$$END$
+}</s:String>
