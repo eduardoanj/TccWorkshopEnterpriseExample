@@ -1,0 +1,37 @@
+﻿{
+  "$schema": "http://json.schemastore.org/launchsettings.json",
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "http://localhost:59679",
+      "sslPort": 0
+    }
+  },
+  "profiles": {
+    "ServiceLocal": {
+      "commandName": "Project",
+      "dotnetRunMessages": "true",
+      "launchBrowser": false,
+      "launchUrl": "swagger",
+      "applicationUrl": "http://localhost:5500",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "BROKER_TIPO": "RABBIT",
+        "POSTGRESQL_HOST": "localhost",
+        "POSTGRESQL_PORT": "5432",
+        "POSTGRESQL_DATABASE": "UserRegistrationEnterpriseExample_IntegrationTests",
+        "POSTGRESQL_USERNAME": "postgres",
+        "POSTGRESQL_PASSWORD": "admin",
+        "POSTGRESQL_SSL_MODE": "Disable",
+        "RABBIT_USERNAME": "guest",
+        "RABBIT_PASSWORD": "guest",
+        "RABBIT_URL": "localhost",
+        "RABBIT_AMQP_PORT": "5672",
+        "RABBIT_VHOST": "/",
+        "SWAGGER_BASE_PATH": "",
+        "USE_JSON_LOG": "false"
+      }
+    }
+  }
+}
