@@ -5,7 +5,6 @@ using Registration.UserRegistrationEnterpriseExample.Infrastructure.PostgreSql;
 using Registration.UserRegistrationEnterpriseExample.Infrastructure.PostgreSql.Common;
 using Registration.UserRegistrationEnterpriseExample.Infrastructure.PostgreSql.Contexts;
 using Registration.UserRegistrationEnterpriseExample.Tests.Common;
-using Registration.UserRegistrationEnterpriseExample.Tests.TestHelpers;
 
 namespace Registration.UserRegistrationEnterpriseExample.Tests.Infrastructure;
 
@@ -22,7 +21,7 @@ public abstract class IntegrationTestsBase : IDisposable
     static IntegrationTestsBase()
     {
         var serviceCollection = TestIntegrationServiceCollectionFactory.BuildIntegrationTestInfrastructure(
-            DatabaseName, () => IntegrationTestClock
+            DatabaseName
         );
 
         TestIntegrationDatabaseManager.RebuildIntegrationDatabase(GetServiceProvider(serviceCollection));
@@ -31,17 +30,15 @@ public abstract class IntegrationTestsBase : IDisposable
     protected IntegrationTestsBase()
     {
         _serviceCollection = TestIntegrationServiceCollectionFactory.BuildIntegrationTestInfrastructure(
-            DatabaseName, () => IntegrationTestClock
+            DatabaseName
         );
 
         TestIntegrationDatabaseManager.TruncateAllDatabaseTables(GetServiceProvider(_serviceCollection));
-        IntegrationTestClock = TestIntegrationServiceCollectionFactory.BuildIntegrationTestClock();
         _rootServiceProvider = new Lazy<IServiceProvider>(() => GetServiceProvider(_serviceCollection));
         _serviceScope = new Lazy<IServiceScope>(() => _rootServiceProvider.Value.CreateScope());
         _databaseContext = new Lazy<DatabaseContext>(() => ServiceProvider.GetService<DatabaseContext>());
     }
-
-    protected static IntegrationTestClock IntegrationTestClock { get; private set; }
+    
     protected IServiceScope ServiceScope => _serviceScope.Value;
     protected IServiceProvider ServiceProvider => ServiceScope.ServiceProvider;
     protected DatabaseContext DatabaseContext => _databaseContext.Value;

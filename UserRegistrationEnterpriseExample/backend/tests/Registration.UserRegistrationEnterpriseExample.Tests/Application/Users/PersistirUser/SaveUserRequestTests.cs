@@ -27,11 +27,21 @@ public class SaveUserRequestTests : IntegrationTestBase
 
     [Fact]
     public async void It_should_insert_a_new_user()
-    {
-        var viewModel = await Handle<SaveUserRequest, SaveUserViewModel>(_userRequest);
+    { 
+        // Arrange
+        var userRequest = new SaveUserRequestBuilder()
+            .WithDocument("6768757576")
+            .WithName("Jaspion da Silva")
+            .WithUserType(UserType.NormalUser.ToString())
+            .WithEmail("teste@teste.com")
+            .WithPassword("123")
+            .Build();
         
+        // Act
+        var viewModel = await Handle<SaveUserRequest, SaveUserViewModel>(userRequest);
+        
+        // Assert
         var user = await GetByIdAsync<User>(viewModel.Id);
-        user.OriginTimestampUtc.Should().Be(IntegrationTestClock.Now);
         user.Document.Should().Be(_userRequest.Document);
     }
 }

@@ -1,5 +1,4 @@
 ﻿using MediatR;
-using Registration.UserRegistrationEnterpriseExample.Application.Common.Exceptions;
 using Registration.UserRegistrationEnterpriseExample.Application.Common.Interfaces;
 using Registration.UserRegistrationEnterpriseExample.Domain.Entidades;
 
@@ -24,14 +23,14 @@ public class VinculateWorkshopToUserRequestHandler : IRequestHandler<VinculateWo
 
         if (user == null)
         {
-            throw new RecursoNaoEncontradoException("Usuário não encontrado");
+            throw new FileNotFoundException("Usuário não encontrado");
         }
 
         var workshop = await _workshops.SelecionarPorId(request.WorkshopId);
         
         if (workshop == null)
         {
-            throw new RecursoNaoEncontradoException("Workshop não encontrado");
+            throw new FileNotFoundException("Workshop não encontrado");
         }
 
         await _userWorkshops.Vincular(new UserWorkshop

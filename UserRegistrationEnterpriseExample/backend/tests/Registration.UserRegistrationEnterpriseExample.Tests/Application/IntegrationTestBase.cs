@@ -4,7 +4,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Registration.UserRegistrationEnterpriseExample.Infrastructure.PostgreSql;
 using Registration.UserRegistrationEnterpriseExample.Tests.Common;
-using Registration.UserRegistrationEnterpriseExample.Tests.TestHelpers;
 
 namespace Registration.UserRegistrationEnterpriseExample.Tests.Application;
 
@@ -17,8 +16,7 @@ public abstract class IntegrationTestBase
     static IntegrationTestBase()
     {
         var serviceCollection = TestIntegrationServiceCollectionFactory.BuildIntegrationTestInfrastructure(
-            DatabaseName,
-            () => IntegrationTestClock
+            DatabaseName
         );
 
         TestIntegrationDatabaseManager.RebuildIntegrationDatabase(GetServiceProvider(serviceCollection));
@@ -27,16 +25,12 @@ public abstract class IntegrationTestBase
     protected IntegrationTestBase()
     {
         var serviceCollection = TestIntegrationServiceCollectionFactory.BuildIntegrationTestInfrastructure(
-            DatabaseName,
-            () => IntegrationTestClock
+            DatabaseName
         );
         _serviceProvider = new Lazy<IServiceProvider>(() => GetServiceProvider(serviceCollection));
 
         TestIntegrationDatabaseManager.TruncateAllDatabaseTables(GetServiceProvider(serviceCollection));
-        IntegrationTestClock = TestIntegrationServiceCollectionFactory.BuildIntegrationTestClock();
     }
-    
-    protected static IntegrationTestClock IntegrationTestClock { get; private set; }
 
     public static IServiceProvider GetServiceProvider(IServiceCollection serviceCollection)
     {

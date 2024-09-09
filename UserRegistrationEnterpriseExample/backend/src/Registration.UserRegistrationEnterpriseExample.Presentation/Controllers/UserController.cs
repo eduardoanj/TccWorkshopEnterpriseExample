@@ -4,7 +4,6 @@ using Registration.UserRegistrationEnterpriseExample.Application.Users.GetUser;
 using Registration.UserRegistrationEnterpriseExample.Application.Users.Login;
 using Registration.UserRegistrationEnterpriseExample.Application.Users.SaveUser;
 using Registration.UserRegistrationEnterpriseExample.Application.Users.Vinculate;
-using Registration.UserRegistrationEnterpriseExample.Application.Usuarios.ObterUsuario;
 
 namespace Registration.UserRegistrationEnterpriseExample.Presentation.Controllers;
 

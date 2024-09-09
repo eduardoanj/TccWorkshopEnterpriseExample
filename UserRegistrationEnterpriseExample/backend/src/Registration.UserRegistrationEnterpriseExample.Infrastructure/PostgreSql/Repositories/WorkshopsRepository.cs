@@ -12,7 +12,7 @@ namespace Registration.UserRegistrationEnterpriseExample.Infrastructure.PostgreS
 
 public class WorkshopsRepository : BaseRepository<WorkShop>, IWorkshops
 {
-    public WorkshopsRepository(IScopedDatabaseContext scopedDatabaseContext, IClock clock) : base(scopedDatabaseContext, clock)
+    public WorkshopsRepository(IScopedDatabaseContext scopedDatabaseContext) : base(scopedDatabaseContext)
     {
     }
 

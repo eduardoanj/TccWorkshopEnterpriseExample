@@ -1,9 +1,7 @@
 ﻿using MediatR;
-using Registration.UserRegistrationEnterpriseExample.Application.Common.Exceptions;
 using Registration.UserRegistrationEnterpriseExample.Application.Common.Interfaces;
-using Registration.UserRegistrationEnterpriseExample.Application.Users.GetUser;
 
-namespace Registration.UserRegistrationEnterpriseExample.Application.Usuarios.ObterUsuario;
+namespace Registration.UserRegistrationEnterpriseExample.Application.Users.GetUser;
 
 public class GetUserRequestHandler : IRequestHandler<GetUserRequest, GetUserViewModel>
 {
@@ -22,7 +20,7 @@ public class GetUserRequestHandler : IRequestHandler<GetUserRequest, GetUserView
 
         if (user == null)
         {
-            throw new RecursoNaoEncontradoException("O usuário não fui encontrado em nossa base de dados");
+            throw new FileNotFoundException("O usuário não fui encontrado em nossa base de dados");
         }
 
         var userWorkshops = 

@@ -9,12 +9,9 @@ namespace Registration.UserRegistrationEnterpriseExample.Application.Users.SaveU
 internal class SaveUserRequestHandler : IRequestHandler<SaveUserRequest, SaveUserViewModel>
 {
     private readonly IUsers _users;
-    private readonly IClock _dateTime;
-
-    public SaveUserRequestHandler(IUsers users, IClock dateTime)
+    public SaveUserRequestHandler(IUsers users)
     {
         _users = users;
-        _dateTime = dateTime;
     }
 
     public async Task<SaveUserViewModel> Handle(SaveUserRequest request, CancellationToken cancellationToken)
@@ -27,7 +24,7 @@ internal class SaveUserRequestHandler : IRequestHandler<SaveUserRequest, SaveUse
         if (user == null)
         {
             user = new User();
-            user.OriginTimestampUtc = _dateTime.Now;
+            user.OriginTimestampUtc = DateTime.Now;
             user.Document = request.Document;
             user.Name = request.Name;
             user.Email = request.Email;

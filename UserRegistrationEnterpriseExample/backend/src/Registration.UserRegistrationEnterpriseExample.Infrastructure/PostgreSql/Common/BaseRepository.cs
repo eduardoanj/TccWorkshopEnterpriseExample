@@ -10,29 +10,28 @@ namespace Registration.UserRegistrationEnterpriseExample.Infrastructure.PostgreS
 public abstract class BaseRepository<T> : IBaseRepository<T>
     where T : EntidadeAuditavel
 {
-    private readonly IClock _clock;
     protected readonly DatabaseContext Context;
     protected readonly DbSet<T> Entity;
 
-    protected BaseRepository(IScopedDatabaseContext scopedDatabaseContext, 
-        IClock clock)
+    protected BaseRepository(IScopedDatabaseContext scopedDatabaseContext)
     {
-        _clock = clock;
         Context = scopedDatabaseContext.Context;
         Entity = Context.Set<T>();
     }
 
     public virtual async Task Inserir(T entidade)
     {
-        entidade.CreatedAt = _clock.Now;
-        entidade.LastModifiedAt = _clock.Now;
+        entidade.CreatedAt = DateTime.Now;
+        entidade.LastModifiedAt = DateTime.Now;
         await Entity.AddAsync(entidade);
+        await Context.SaveChangesAsync();
     }
 
     public virtual Task Atualizar(T entidade)
     {
-        entidade.LastModifiedAt = _clock.Now;
+        entidade.LastModifiedAt = DateTime.Now;
         Entity.Update(entidade);
+        Context.SaveChanges();
         return Task.CompletedTask;
     }
 
@@ -40,39 +39,12 @@ public abstract class BaseRepository<T> : IBaseRepository<T>
     {
         return Entity.Any(e => e.Id == entidade.Id) ? Atualizar(entidade) : Inserir(entidade);
     }
-
-    public Task ExcluirFisicamente(T entidade)
-    {
-        Entity.Remove(entidade);
-        return Task.CompletedTask;
-    }
-
-    public Task ExcluirLogicamente(T entidade)
-    {
-        entidade.LastModifiedAt = _clock.Now;
-        entidade.Deleted = true;
-
-        return Atualizar(entidade);
-    }
-
-    public virtual async Task<IList<T>> SelecionarVariasPor(Expression<Func<T, bool>> filtro = null)
-    {
-        if (filtro == null)
-            return await Entity.ToListAsync();
-
-        return await Entity.Where(filtro).ToListAsync();
-    }
-
+    
     public virtual async Task<T> SelecionarUmaPor(Expression<Func<T, bool>> filtro = null)
     {
         return await Entity.SingleOrDefaultAsync(filtro!);
     }
-
-    public Task<T> ObterPorId(Guid id)
-    {
-        return SelecionarUmaPor(x => x.Id == id);
-    }
-
+    
     public IQueryable<T> ConsultaComIncludes(bool eager = false)
     {
         var query = Entity.AsQueryable();

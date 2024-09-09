@@ -3,16 +3,12 @@ using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Registration.UserRegistrationEnterpriseExample.Application;
 using Registration.UserRegistrationEnterpriseExample.Domain;
 using Registration.UserRegistrationEnterpriseExample.Infrastructure;
-using Registration.UserRegistrationEnterpriseExample.Infrastructure.AspNetCore.Extensions;
-using Registration.UserRegistrationEnterpriseExample.Infrastructure.Logging;
 using Registration.UserRegistrationEnterpriseExample.Presentation;
-using Registration.UserRegistrationEnterpriseExample.Presentation.Common;
 using Registration.UserRegistrationEnterpriseExample.Presentation.Common.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 var startup = new Startup();
 
-builder.Host.ConfigureSerilog(ProjectSettings.Name);
 startup.ConfigureServices(builder.Services);
 
 var app = builder.Build();
@@ -42,11 +38,8 @@ namespace Registration.UserRegistrationEnterpriseExample.Presentation
                 .AllowAnyHeader()
                 .SetIsOriginAllowed(origin => true) 
                 .AllowCredentials());
-            
-            app.UseGlobalExceptionHandler(loggerFactory);
 
-            app.UseMiddleware<OptionsMiddleware>()
-                .UseMiddleware<RequestContextMiddleware>();
+            app.UseMiddleware<OptionsMiddleware>();
 
             app.UseRouting();
 

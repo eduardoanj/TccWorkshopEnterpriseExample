@@ -1,5 +1,4 @@
 ﻿using Registration.UserRegistrationEnterpriseExample.Application.Common.Interfaces;
-using Registration.UserRegistrationEnterpriseExample.Domain.Common;
 using Registration.UserRegistrationEnterpriseExample.Domain.Entidades;
 using Registration.UserRegistrationEnterpriseExample.Infrastructure.PostgreSql.Common;
 using Registration.UserRegistrationEnterpriseExample.Infrastructure.PostgreSql.Contexts;
@@ -8,7 +7,7 @@ namespace Registration.UserRegistrationEnterpriseExample.Infrastructure.PostgreS
 
 public class UserWorkshopsRepository : BaseRepository<UserWorkshop>, IUserWorkshops
 {
-    public UserWorkshopsRepository(IScopedDatabaseContext scopedDatabaseContext, IClock clock) : base(scopedDatabaseContext, clock)
+    public UserWorkshopsRepository(IScopedDatabaseContext scopedDatabaseContext) : base(scopedDatabaseContext)
     {
     }
 
